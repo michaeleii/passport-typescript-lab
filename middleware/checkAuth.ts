@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-/*
-FIX ME (types) 😭
-*/
+
 export const ensureAuthenticated = (
 	req: Request,
 	res: Response,
@@ -13,9 +11,7 @@ export const ensureAuthenticated = (
 	res.redirect("/auth/login");
 };
 
-/*
-FIX ME (types) 😭
-*/
+
 export const forwardAuthenticated = (
 	req: Request,
 	res: Response,
