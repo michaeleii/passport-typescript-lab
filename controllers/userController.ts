@@ -17,15 +17,7 @@ const getUserById = (id: number) => {
 	return null;
 };
 
-function isUserValid(
-	user: {
-		id: number;
-		name: string;
-		email: string;
-		password: string;
-	},
-	password: string
-) {
+function isUserValid(user: Express.User, password: string) {
 	return user.password === password;
 }
 
