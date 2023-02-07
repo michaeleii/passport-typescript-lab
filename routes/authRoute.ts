@@ -8,7 +8,9 @@ router.get("/login", forwardAuthenticated, (req, res) => {
 	res.render("login", { error: false });
 });
 router.get("/login/error", forwardAuthenticated, (req, res) => {
-	res.render("login", { error: true });
+	res.render("login", {
+		error: true,
+	});
 });
 
 router.post(
