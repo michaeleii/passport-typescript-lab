@@ -7,19 +7,25 @@ const router = express.Router();
 router.get("/login", forwardAuthenticated, (req, res) => {
 	res.render("login", { error: false });
 });
-router.get("/login/error", forwardAuthenticated, (req, res) => {
-	res.render("login", {
-		error: true,
-	});
-});
 
-router.post(
-	"/login",
-	passport.authenticate("local", {
-		successRedirect: "/dashboard",
-		failureRedirect: "/auth/login/error",
-	})
-);
+router.post("/login", (req, res) => {
+	passport.authenticate(
+		"local",
+
+		(err, user, info) => {
+			if (user) {
+				req.login(user, function (err) {
+					if (err) {
+						console.log("Error", err);
+					}
+					return res.redirect("/dashboard");
+				});
+			} else {
+				res.render("login", { error: true });
+			}
+		}
+	)(req, res);
+});
 
 router.get("/logout", (req, res) => {
 	req.logout((err) => {
