@@ -8,9 +8,8 @@ export const ensureAuthenticated = (
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect("/auth/login");
+	res.redirect("/auth/login/error");
 };
-
 
 export const forwardAuthenticated = (
 	req: Request,

@@ -36,7 +36,7 @@ passport.deserializeUser(function (
 	if (user) {
 		done(null, user);
 	} else {
-		done({ message: "User not found" }, null);
+		done({ error: "User not found" }, null);
 	}
 });
 
