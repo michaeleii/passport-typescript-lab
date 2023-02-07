@@ -11,7 +11,6 @@ export const ensureAuthenticated = (
 	res.redirect("/auth/login");
 };
 
-
 export const forwardAuthenticated = (
 	req: Request,
 	res: Response,

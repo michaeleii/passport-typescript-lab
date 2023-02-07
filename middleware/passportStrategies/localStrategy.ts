@@ -30,7 +30,7 @@ passport.serializeUser(function (
 
 passport.deserializeUser(function (
 	id: number,
-	done: (err: any, user: Express.User | null) => void
+	done: (err: any, user?: Express.User | null) => void
 ) {
 	let user = getUserById(id);
 	if (user) {
