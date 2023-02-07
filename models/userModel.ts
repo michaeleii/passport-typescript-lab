@@ -23,6 +23,12 @@ const database = [
 		email: "scottchen@email.com",
 		password: "12345",
 	},
+	{
+		id: 5,
+		name: "Jerry Fan",
+		email: "jfan@email.com",
+		password: "12345",
+	},
 ];
 
 const userModel = {
