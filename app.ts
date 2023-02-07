@@ -10,6 +10,8 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
+
+//Check if browser has session id
 app.use(
 	session({
 		secret: "secret",
@@ -44,6 +46,7 @@ app.use((req, res, next) => {
 	next();
 });
 
+//Set up routes
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
 

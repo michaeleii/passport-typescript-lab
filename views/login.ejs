@@ -6,13 +6,7 @@
       </h1>
       <h2 class="text-center">Login</h2>
       <% if (error) { %>
-        <div class="w-75 mx-auto my-2 p-2 bg-danger text-white rounded text-center">
-          <div>
-            <i class="fas fa-exclamation-triangle"></i>
-            <strong> Login Failed</strong>
-          </div>
-          Please try again.
-        </div>
+        <p class="mt-2 text-danger text-center">Incorrect Credentials</p>
         <% } %>
           <form action="/auth/login" method="POST">
             <div class="mb-3">
@@ -29,6 +23,6 @@
           </form>
           <p class="mt-4 text-center">New User? <a href="/auth/register">Register</a></p>
           <p class="text-center">Forgot Password? <a href="/auth/forgot">Reset</a></p>
+          </p>
     </div>
   </div>
-</div>

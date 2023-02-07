@@ -8,7 +8,7 @@ import { PassportStrategy } from "../../interfaces/index";
 
 const localStrategy = new LocalStrategy(
 	{
-		usernameField: "email",
+		usernameField: "email", //Passes req.body.email into the callback, by default it is req.body.username
 		passwordField: "password",
 	},
 	(email, password, done) => {
@@ -21,6 +21,10 @@ const localStrategy = new LocalStrategy(
 	}
 );
 
+//Create a session for the user
+//This function is called when the user is authenticated
+//The user id is stored in the session
+//req.user = user
 passport.serializeUser(function (
 	user: Express.User,
 	done: (err: any, id: number) => void
