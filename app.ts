@@ -23,7 +23,7 @@ app.use(
 		},
 	})
 );
-
+app.use(flash());
 import authRoute from "./routes/authRoute";
 import indexRoute from "./routes/indexRoute";
 
