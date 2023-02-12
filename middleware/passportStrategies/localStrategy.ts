@@ -12,12 +12,13 @@ const localStrategy = new LocalStrategy(
 		passwordField: "password",
 	},
 	(email, password, done) => {
-		const user = getUserByEmailIdAndPassword(email, password);
-		return user
-			? done(null, user)
-			: done(null, false, {
-					message: "Your login details are not valid. Please try again",
-			  });
+		try {
+			const user = getUserByEmailIdAndPassword(email, password);
+			return done(null, user ? user : false);
+		} catch (error: any) {
+			console.log(error.message);
+			return done(null, false, error);
+		}
 	}
 );
 
@@ -36,10 +37,7 @@ passport.serializeUser(function (
 */
 passport.deserializeUser(function (
 	id: number,
-	done: (
-		err: { message: string } | null,
-		user?: false | Express.User | null | undefined
-	) => void
+	done: (err: { message: string } | null, user: Express.User | null) => void
 ) {
 	let user = getUserById(id);
 	if (user) {
