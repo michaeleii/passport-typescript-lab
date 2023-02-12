@@ -20,8 +20,8 @@ const database = [
 	{
 		id: 4,
 		name: "Scott Chen",
-		email: "scottchen@email.com",
-		password: "123213812381927312945",
+		email: "schen@email.com",
+		password: "12345",
 	},
 	{
 		id: 5,
