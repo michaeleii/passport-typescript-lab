@@ -26,7 +26,7 @@ const localStrategy = new LocalStrategy(
 */
 passport.serializeUser(function (
 	user: Express.User,
-	done: (err: any, id?: number) => void
+	done: (err: null, id?: number) => void
 ) {
 	done(null, user.id);
 });
@@ -36,13 +36,16 @@ passport.serializeUser(function (
 */
 passport.deserializeUser(function (
 	id: number,
-	done: (err: any, user?: false | Express.User | null | undefined) => void
+	done: (
+		err: { message: string } | null,
+		user?: false | Express.User | null | undefined
+	) => void
 ) {
 	let user = getUserById(id);
 	if (user) {
 		done(null, user);
 	} else {
-		done({ error: "User not found" }, null);
+		done({ message: "User not found" }, null);
 	}
 });
 
