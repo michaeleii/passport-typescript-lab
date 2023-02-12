@@ -4,9 +4,17 @@ import { forwardAuthenticated } from "../middleware/checkAuth";
 
 const router = express.Router();
 
+declare module "express-session" {
+	interface SessionData {
+		messages: string[];
+	}
+}
+
 router.get("/login", forwardAuthenticated, (req, res) => {
-	const errorMessage = req.flash("error").at(-1);
-	res.render("login", { errorMessage: errorMessage });
+	const errorMessage = req.session.messages
+		? req.session.messages.at(-1)
+		: false;
+	res.render("login", { errorMessage });
 });
 
 router.post(
@@ -14,7 +22,7 @@ router.post(
 	passport.authenticate("local", {
 		successRedirect: "/dashboard",
 		failureRedirect: "/auth/login",
-		failureFlash: true,
+		failureMessage: true,
 	})
 );
 

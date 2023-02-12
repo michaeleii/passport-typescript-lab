@@ -16,7 +16,6 @@ const localStrategy = new LocalStrategy(
 			const user = getUserByEmailIdAndPassword(email, password);
 			return done(null, user ? user : false);
 		} catch (error: any) {
-			console.log(error.message);
 			return done(null, false, error);
 		}
 	}

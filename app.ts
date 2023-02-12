@@ -3,7 +3,6 @@ import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import path from "path";
 import passportMiddleware from "./middleware/passportMiddleware";
-import flash from "connect-flash";
 
 const port = process.env.port || 8000;
 
@@ -23,7 +22,6 @@ app.use(
 		},
 	})
 );
-app.use(flash());
 import authRoute from "./routes/authRoute";
 import indexRoute from "./routes/indexRoute";
 
