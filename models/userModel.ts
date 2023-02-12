@@ -32,6 +32,7 @@ const database = [
 ];
 
 const userModel = {
+	/* Done */
 	findOne: (email: string) => {
 		const user = database.find((user) => user.email === email);
 		if (user) {
@@ -39,7 +40,7 @@ const userModel = {
 		}
 		throw new Error(`Couldn't find user with email: ${email}`);
 	},
-
+	/* Done */
 	findById: (id: number) => {
 		const user = database.find((user) => user.id === id);
 		if (user) {

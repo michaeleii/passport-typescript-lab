@@ -1,5 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 
+/*
+DONE
+*/
 export const ensureAuthenticated = (
 	req: Request,
 	res: Response,
@@ -11,6 +14,9 @@ export const ensureAuthenticated = (
 	res.redirect("/auth/login");
 };
 
+/*
+DONE
+*/
 export const forwardAuthenticated = (
 	req: Request,
 	res: Response,

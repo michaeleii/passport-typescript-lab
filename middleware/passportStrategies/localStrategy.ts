@@ -21,16 +21,22 @@ const localStrategy = new LocalStrategy(
 	}
 );
 
+/*
+Done
+*/
 passport.serializeUser(function (
 	user: Express.User,
-	done: (err: any, id: number) => void
+	done: (err: any, id?: number) => void
 ) {
 	done(null, user.id);
 });
 
+/*
+Done
+*/
 passport.deserializeUser(function (
 	id: number,
-	done: (err: any, user: Express.User | null) => void
+	done: (err: any, user?: false | Express.User | null | undefined) => void
 ) {
 	let user = getUserById(id);
 	if (user) {
