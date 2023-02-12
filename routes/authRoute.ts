@@ -5,18 +5,16 @@ import { forwardAuthenticated } from "../middleware/checkAuth";
 const router = express.Router();
 
 router.get("/login", forwardAuthenticated, (req, res) => {
-	res.render("login", { error: false });
+	res.render("login");
 });
-
 router.post(
 	"/login",
 	passport.authenticate("local", {
 		successRedirect: "/dashboard",
 		failureRedirect: "/auth/login",
-		failureMessage: true,
+		/* FIX ME: 😭 failureMsg needed when login fails */
 	})
 );
-
 router.get("/logout", (req, res) => {
 	req.logout((err) => {
 		if (err) console.log(err);
