@@ -21,13 +21,13 @@ const database = [
 		id: 4,
 		name: "Scott Chen",
 		email: "scottchen@email.com",
-		password: "12345",
+		password: "123213812381927312945",
 	},
 	{
 		id: 5,
 		name: "Jerry Fan",
 		email: "jfan@email.com",
-		password: "12345",
+		password: "1231231231345",
 	},
 ];
 

@@ -10,11 +10,17 @@ router.get("/login", forwardAuthenticated, (req, res) => {
 
 router.post(
 	"/login",
-	passport.authenticate("local", {
-		successRedirect: "/dashboard",
-		failureRedirect: "/auth/login",
-		/* FIX ME: 😭 failureMsg needed when login fails */
-	})
+	passport.authenticate(
+		"local",
+		{
+			successRedirect: "/dashboard",
+			failureRedirect: "/auth/login",
+			/* FIX ME: 😭 failureMsg needed when login fails */
+		},
+		(err, user, options) => {
+			console.log(options); // options will be the complete object you pass in done()
+		}
+	)
 );
 
 router.get("/logout", (req, res) => {
