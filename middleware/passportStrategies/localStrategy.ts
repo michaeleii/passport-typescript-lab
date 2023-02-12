@@ -22,7 +22,7 @@ const localStrategy = new LocalStrategy(
 );
 
 /*
-Done
+ ✅ Done
 */
 passport.serializeUser(function (
 	user: Express.User,
@@ -32,7 +32,7 @@ passport.serializeUser(function (
 });
 
 /*
-Done
+ ✅ Done
 */
 passport.deserializeUser(function (
 	id: number,

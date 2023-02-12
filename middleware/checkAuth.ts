@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 
 /*
-DONE
+✅ Done
 */
 export const ensureAuthenticated = (
 	req: Request,
@@ -15,7 +15,7 @@ export const ensureAuthenticated = (
 };
 
 /*
-DONE
+✅ Done
 */
 export const forwardAuthenticated = (
 	req: Request,

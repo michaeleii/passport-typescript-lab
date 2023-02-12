@@ -10,7 +10,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
 		passReqToCallback: true,
 	},
 
-	/* Done */
+	/* ✅ Done */
 	async (
 		req: Request,
 		accessToken: string,
