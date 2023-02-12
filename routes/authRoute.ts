@@ -13,6 +13,7 @@ router.post(
 	passport.authenticate("local", {
 		successRedirect: "/dashboard",
 		failureRedirect: "/auth/login",
+		failureFlash: "Invalid username or password.",
 	})
 );
 
