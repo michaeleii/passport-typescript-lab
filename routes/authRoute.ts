@@ -11,9 +11,8 @@ declare module "express-session" {
 }
 
 router.get("/login", forwardAuthenticated, (req, res) => {
-	const errorMessage = req.session.messages
-		? req.session.messages.at(-1)
-		: false;
+	const errorMessage = req.session.messages ? req.session.messages[0] : false;
+	req.session.messages = [];
 	res.render("login", { errorMessage });
 });
 
