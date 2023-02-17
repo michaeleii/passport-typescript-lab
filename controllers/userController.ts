@@ -26,7 +26,11 @@ function isUserValid(
 	},
 	password: string
 ) {
-	return user.password === password;
+	if (user.password === password) {
+		return true;
+	} else {
+		throw new Error("Invalid password");
+	}
 }
 
 export { getUserByEmailIdAndPassword, getUserById };
