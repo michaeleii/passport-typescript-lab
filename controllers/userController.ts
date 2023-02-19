@@ -29,7 +29,7 @@ function isUserValid(
 	if (user.password === password) {
 		return true;
 	} else {
-		throw new Error("Invalid password");
+		throw new Error("Password is incorrect");
 	}
 }
 
