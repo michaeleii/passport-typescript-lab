@@ -1,7 +1,8 @@
 import { Request } from "express";
 import { Strategy as GitHubStrategy } from "passport-github2";
-import { getUserById, addGitHubUser } from "../../controllers/userController";
 import { PassportStrategy } from "../../interfaces/index";
+import { getUserById, addGitHubUser } from "../../controllers/userController";
+
 require("dotenv").config();
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 

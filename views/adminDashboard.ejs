@@ -9,7 +9,9 @@
             </p>
             <p>User ID: <%= session.user_id %>
             </p>
-            <a href="/session/destroy/<%= session.sid %>" class="text-decoration-none">Revoke Session</a>
+            <form action="/session/destroy/<%= session.sid %>" method="post">
+                <button class="btn btn-primary">Revoke Session</button>
+            </form>
         </div>
     </div>
     <% }) %>

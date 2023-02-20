@@ -1,6 +1,4 @@
 import express from "express";
-import { SessionData } from "express-session";
-import { session } from "passport";
 const router = express.Router();
 import { ensureAuthenticated } from "../middleware/checkAuth";
 
@@ -31,13 +29,27 @@ router.get("/admin", ensureAuthenticated, async (req, res) => {
 	};
 	const sessionData = await getAllSessionIDs();
 	const sids = Object.keys(sessionData);
-	const sessions = sids.map((sid: string) => {
-		return {
+	const sessions = sids
+		.filter(
+			(sid: string) =>
+				sessionData[sid].passport && sessionData[sid].passport.user
+		)
+		.map((sid: string) => ({
 			sid,
 			user_id: sessionData[sid].passport.user,
-		};
-	});
+		}));
 	res.render("adminDashboard", { user: req.user, sessions });
+});
+
+router.post("/session/destroy/:session_id", ensureAuthenticated, (req, res) => {
+	const sid = req.params.session_id;
+	const store = req.sessionStore;
+	store.destroy(sid, (err) => {
+		if (err) {
+			throw new Error(err);
+		}
+		res.redirect("/admin");
+	});
 });
 
 export default router;
