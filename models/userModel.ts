@@ -1,4 +1,4 @@
-const database = [
+const database: Express.User[] = [
 	{
 		id: 1,
 		name: "Jimmy Smith",
@@ -17,18 +17,6 @@ const database = [
 		email: "jonathan123@gmail.com",
 		password: "jonathan123!",
 	},
-	{
-		id: 4,
-		name: "Scott Chen",
-		email: "schen@email.com",
-		password: "12345",
-	},
-	{
-		id: 5,
-		name: "Jerry Fan",
-		email: "jfan@email.com",
-		password: "1231231231345",
-	},
 ];
 
 const userModel = {
@@ -46,7 +34,11 @@ const userModel = {
 		if (user) {
 			return user;
 		}
-		throw new Error(`Couldn't find user with id: ${id}`);
+		return null;
+	},
+	addUser(user: Express.User) {
+		database.push(user);
+		return user;
 	},
 };
 

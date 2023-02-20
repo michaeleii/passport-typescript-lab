@@ -1,6 +1,8 @@
 import { Request } from "express";
 import { Strategy as GitHubStrategy } from "passport-github2";
+import { getUserById, addGitHubUser } from "../../controllers/userController";
 import { PassportStrategy } from "../../interfaces/index";
+require("dotenv").config();
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
@@ -19,7 +21,14 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
 		profile: any,
 		done: (err?: Error | null, profile?: any) => void
 	) => {
-		console.log(req);
+		const { id, displayName } = profile;
+		let user = getUserById(id);
+		if (user) {
+			done(null, user);
+		} else {
+			let user = addGitHubUser(id, displayName);
+			done(null, user);
+		}
 	}
 );
 
