@@ -18,7 +18,11 @@ const getUserById = (id: number) => {
 };
 
 const addGitHubUser = (id: number, displayName: string) => {
-	const user = userModel.addUser({ id: Number(id), name: displayName });
+	const user = userModel.addUser({
+		id: Number(id),
+		name: displayName,
+		role: "user",
+	});
 	return user;
 };
 
