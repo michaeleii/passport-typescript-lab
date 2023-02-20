@@ -16,28 +16,27 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 
 router.get("/admin", ensureAuthenticated, async (req, res) => {
 	const store = req.sessionStore;
-	const getAllSessionIDs = (): Promise<string[]> => {
+	const getAllSessionIDs = (): Promise<any> => {
 		return new Promise((resolve, reject) => {
 			store.all?.((err, sessions) => {
 				if (err) {
 					reject(err);
 				} else {
 					if (sessions) {
-						resolve(Object.keys(sessions));
+						resolve(sessions);
 					}
 				}
 			});
 		});
 	};
-	const sids: string[] = await getAllSessionIDs();
-	const sessions = sids.map((sid) => {
+	const sessionData = await getAllSessionIDs();
+	const sids = Object.keys(sessionData);
+	const sessions = sids.map((sid: string) => {
 		return {
 			sid,
-			user_id: 1,
+			user_id: sessionData[sid].passport.user,
 		};
 	});
-	console.log(sessions);
-
 	res.render("adminDashboard", { user: req.user, sessions });
 });
 

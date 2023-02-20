@@ -19,7 +19,7 @@ const getUserById = (id: number) => {
 
 const addGitHubUser = (id: number, displayName: string) => {
 	const user = userModel.addUser({
-		id: Number(id),
+		id: database.length + 1,
 		name: displayName,
 		role: "user",
 	});

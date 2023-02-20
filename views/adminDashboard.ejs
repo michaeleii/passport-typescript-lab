@@ -3,9 +3,13 @@
 </p>
 <p>Current active sessions:</p>
 <% sessions.forEach(session=> { %>
-    <p>Session ID: <%= session.sid %>
-    </p>
-    <p>User ID: <%= session.user_id %>
-    </p>
-    <a href="/auth/logout" class="text-decoration-none">Revoke Session</a>
+    <div class="card mb-3">
+        <div class="card-body">
+            <p>Session ID: <%= session.sid %>
+            </p>
+            <p>User ID: <%= session.user_id %>
+            </p>
+            <a href="/session/destroy/<%= session.sid %>" class="text-decoration-none">Revoke Session</a>
+        </div>
+    </div>
     <% }) %>
