@@ -8,7 +8,7 @@ import passportMiddleware from "./middleware/passportMiddleware";
 const port = process.env.port || 8000;
 
 dotenv.config();
-
+require("dotenv").config();
 const app = express();
 
 app.set("view engine", "ejs");

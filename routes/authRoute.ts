@@ -25,6 +25,22 @@ router.post(
 	})
 );
 
+router.get(
+	"/github",
+	passport.authenticate("github", {
+		scope: ["user:email"],
+	})
+);
+
+router.get(
+	"/github/callback",
+	passport.authenticate("github", {
+		successRedirect: "/dashboard",
+		failureRedirect: "/login",
+		failureMessage: true,
+	})
+);
+
 router.get("/logout", (req, res) => {
 	req.logout((err) => {
 		if (err) console.log(err);
