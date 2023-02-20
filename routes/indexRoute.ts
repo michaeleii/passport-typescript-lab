@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { ensureAuthenticated } from "../middleware/checkAuth";
+import { ensureAdmin, ensureAuthenticated } from "../middleware/checkAuth";
 
 router.get("/", (req, res) => {
 	res.send("welcome");
@@ -12,7 +12,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res) => {
 	});
 });
 
-router.get("/admin", ensureAuthenticated, async (req, res) => {
+router.get("/admin", ensureAuthenticated, ensureAdmin, async (req, res) => {
 	const store = req.sessionStore;
 	const getAllSessionIDs = (): Promise<any> => {
 		return new Promise((resolve, reject) => {
@@ -41,15 +41,20 @@ router.get("/admin", ensureAuthenticated, async (req, res) => {
 	res.render("adminDashboard", { user: req.user, sessions });
 });
 
-router.post("/session/destroy/:session_id", ensureAuthenticated, (req, res) => {
-	const sid = req.params.session_id;
-	const store = req.sessionStore;
-	store.destroy(sid, (err) => {
-		if (err) {
-			throw new Error(err);
-		}
-		res.redirect("/admin");
-	});
-});
+router.post(
+	"/session/destroy/:session_id",
+	ensureAuthenticated,
+	ensureAdmin,
+	(req, res) => {
+		const sid = req.params.session_id;
+		const store = req.sessionStore;
+		store.destroy(sid, (err) => {
+			if (err) {
+				throw new Error(err);
+			}
+			res.redirect("/admin");
+		});
+	}
+);
 
 export default router;

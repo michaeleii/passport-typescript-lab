@@ -20,6 +20,13 @@ const database: Express.User[] = [
 		password: "jonathan123!",
 		role: "user",
 	},
+	{
+		id: 4,
+		name: "Michael Lei",
+		email: "mlei6@my.bcit.ca",
+		password: "michael123!",
+		role: "admin",
+	},
 ];
 
 const userModel = {

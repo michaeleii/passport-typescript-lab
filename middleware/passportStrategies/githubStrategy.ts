@@ -2,14 +2,15 @@ import { Request } from "express";
 import { Strategy as GitHubStrategy } from "passport-github2";
 import { PassportStrategy } from "../../interfaces/index";
 import { getUserById, addGitHubUser } from "../../controllers/userController";
+import * as dotenv from "dotenv";
 
-require("dotenv").config();
+dotenv.config();
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
 	{
-		clientID: GITHUB_CLIENT_ID,
-		clientSecret: GITHUB_CLIENT_SECRET,
+		clientID: GITHUB_CLIENT_ID ? GITHUB_CLIENT_ID : "",
+		clientSecret: GITHUB_CLIENT_SECRET ? GITHUB_CLIENT_SECRET : "",
 		callbackURL: "http://localhost:8000/auth/github/callback",
 		passReqToCallback: true,
 	},
@@ -21,7 +22,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
 		refreshToken: string,
 		profile: any,
 		done: (err?: Error | null, profile?: any) => void
-	) => {
+	): Promise<void> => {
 		const { id, displayName } = profile;
 		let user = getUserById(id);
 		if (user) {

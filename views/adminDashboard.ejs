@@ -5,13 +5,16 @@
 <% sessions.forEach(session=> { %>
     <div class="card mb-3">
         <div class="card-body">
-            <p>Session ID: <%= session.sid %>
-            </p>
-            <p>User ID: <%= session.user_id %>
-            </p>
-            <form action="/session/destroy/<%= session.sid %>" method="post">
-                <button class="btn btn-primary">Revoke Session</button>
-            </form>
+            <% if (session.user_id===user.id) { %>
+                <h3>Your Current Session</h3>
+                <% } %>
+                    <p>Session ID: <%= session.sid %>
+                    </p>
+                    <p>User ID: <%= session.user_id %>
+                    </p>
+                    <form action="/session/destroy/<%= session.sid %>" method="post">
+                        <button class="btn btn-primary">Revoke Session</button>
+                    </form>
         </div>
     </div>
     <% }) %>
