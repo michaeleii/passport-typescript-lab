@@ -28,7 +28,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
 		if (user) {
 			done(null, user);
 		} else {
-			let user = addGitHubUser(id, displayName);
+			let user = addGitHubUser(displayName);
 			done(null, user);
 		}
 	}
