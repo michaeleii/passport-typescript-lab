@@ -1,4 +1,6 @@
-const database: Express.User[] = [
+import { User } from "../interfaces/User";
+
+const database: User[] = [
 	{
 		id: 1,
 		name: "Jimmy Smith",
@@ -46,7 +48,7 @@ const userModel = {
 		}
 		return null;
 	},
-	addUser(user: Express.User) {
+	addUser(user: User) {
 		database.push(user);
 		return user;
 	},
