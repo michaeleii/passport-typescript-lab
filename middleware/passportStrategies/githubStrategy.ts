@@ -3,6 +3,8 @@ import { Strategy as GitHubStrategy } from "passport-github2";
 import { PassportStrategy } from "../../interfaces/index";
 import { getUserById, addGitHubUser } from "../../controllers/userController";
 import * as dotenv from "dotenv";
+import { GithubProfile } from "../../interfaces/GithubProfile";
+import { User } from "../../interfaces/User";
 
 dotenv.config();
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
@@ -20,11 +22,11 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
 		req: Request,
 		accessToken: string,
 		refreshToken: string,
-		profile: any,
-		done: (err?: Error | null, profile?: any) => void
+		profile: GithubProfile,
+		done: (err?: Error | null, user?: User) => void
 	): Promise<void> => {
 		const { id, displayName } = profile;
-		let user = getUserById(id);
+		let user = getUserById(parseInt(id));
 		if (user) {
 			done(null, user);
 		} else {
