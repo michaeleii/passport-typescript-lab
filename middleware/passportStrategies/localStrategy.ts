@@ -5,7 +5,18 @@ import {
 	getUserById,
 } from "../../controllers/userController";
 import { PassportStrategy } from "../../interfaces/index";
-import { User } from "../../interfaces/User";
+
+declare global {
+	namespace Express {
+		interface User {
+			id: number;
+			name: string;
+			email?: string;
+			password?: string;
+			role: string;
+		}
+	}
+}
 
 const localStrategy = new LocalStrategy(
 	{
@@ -26,7 +37,7 @@ const localStrategy = new LocalStrategy(
  ✅ Done
 */
 passport.serializeUser(function (
-	user: User,
+	user: Express.User,
 	done: (err: null, id?: number) => void
 ) {
 	done(null, user.id);
@@ -37,7 +48,7 @@ passport.serializeUser(function (
 */
 passport.deserializeUser(function (
 	id: number,
-	done: (err: { message: string } | null, user: User | null) => void
+	done: (err: { message: string } | null, user: Express.User | null) => void
 ) {
 	let user = getUserById(id);
 	if (user) {
