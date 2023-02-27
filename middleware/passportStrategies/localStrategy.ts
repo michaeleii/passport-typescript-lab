@@ -6,15 +6,13 @@ import {
 } from "../../controllers/userController";
 import { PassportStrategy } from "../../interfaces/index";
 
-declare global {
-	namespace Express {
-		interface User {
-			id: number;
-			name: string;
-			email?: string;
-			password?: string;
-			role: string;
-		}
+declare module "express" {
+	interface User {
+		id: number;
+		name: string;
+		email?: string;
+		password?: string;
+		role: string;
 	}
 }
 
