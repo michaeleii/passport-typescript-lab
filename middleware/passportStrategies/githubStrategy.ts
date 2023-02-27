@@ -6,6 +6,7 @@ import { GithubProfile } from "../../interfaces/GithubProfile";
 import { User } from "../../interfaces/User";
 import * as dotenv from "dotenv";
 dotenv.config();
+
 declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
