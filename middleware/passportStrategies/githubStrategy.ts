@@ -5,7 +5,7 @@ import { getUserById, addGitHubUser } from "../../controllers/userController";
 import { GithubProfile } from "../../interfaces/GithubProfile";
 import { User } from "../../interfaces/User";
 import * as dotenv from "dotenv";
-dotenv.config({ path: __dirname + "/.env" });
+dotenv.config();
 
 const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID as string;
 const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET as string;
