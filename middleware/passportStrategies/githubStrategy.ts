@@ -2,16 +2,13 @@ import { Request } from "express";
 import { Strategy as GitHubStrategy } from "passport-github2";
 import { PassportStrategy } from "../../interfaces/index";
 import { getUserById, addGitHubUser } from "../../controllers/userController";
-import * as dotenv from "dotenv";
 import { GithubProfile } from "../../interfaces/GithubProfile";
 import { User } from "../../interfaces/User";
-dotenv.config();
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname + "/.env" });
 
-const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
-
-if (!GITHUB_CLIENT_ID || !GITHUB_CLIENT_SECRET) {
-	throw new Error("GitHub credentials are not set");
-}
+const GITHUB_CLIENT_ID = process.env.GITHUB_CLIENT_ID as string;
+const GITHUB_CLIENT_SECRET = process.env.GITHUB_CLIENT_SECRET as string;
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
 	{
