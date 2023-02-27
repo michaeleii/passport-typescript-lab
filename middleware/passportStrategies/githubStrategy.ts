@@ -5,14 +5,18 @@ import { getUserById, addGitHubUser } from "../../controllers/userController";
 import * as dotenv from "dotenv";
 import { GithubProfile } from "../../interfaces/GithubProfile";
 import { User } from "../../interfaces/User";
-
 dotenv.config();
+
 const { GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET } = process.env;
+
+if (!GITHUB_CLIENT_ID || !GITHUB_CLIENT_SECRET) {
+	throw new Error("GitHub credentials are not set");
+}
 
 const githubStrategy: GitHubStrategy = new GitHubStrategy(
 	{
-		clientID: GITHUB_CLIENT_ID ? GITHUB_CLIENT_ID : "",
-		clientSecret: GITHUB_CLIENT_SECRET ? GITHUB_CLIENT_SECRET : "",
+		clientID: GITHUB_CLIENT_ID,
+		clientSecret: GITHUB_CLIENT_SECRET,
 		callbackURL: "http://localhost:8000/auth/github/callback",
 		passReqToCallback: true,
 	},
