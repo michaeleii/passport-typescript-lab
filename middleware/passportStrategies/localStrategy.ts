@@ -6,13 +6,15 @@ import {
 } from "../../controllers/userController";
 import { PassportStrategy } from "../../interfaces/index";
 
-declare module "express" {
-	interface User {
-		id: number;
-		name: string;
-		email?: string;
-		password?: string;
-		role: string;
+declare global {
+	namespace Express {
+		interface User {
+			id: number;
+			name: string;
+			email?: string;
+			password?: string;
+			role: string;
+		}
 	}
 }
 
@@ -36,7 +38,7 @@ const localStrategy = new LocalStrategy(
 */
 passport.serializeUser(function (
 	user: Express.User,
-	done: (err: null, id?: number) => void
+	done: (err: null, id: number) => void
 ) {
 	done(null, user.id);
 });
