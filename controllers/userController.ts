@@ -1,4 +1,3 @@
-import { User } from "../interfaces/User";
 import { database, userModel } from "../models/userModel";
 
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
@@ -27,7 +26,7 @@ const addGitHubUser = (displayName: string) => {
 	return user;
 };
 
-function isUserValid(user: User, password: string) {
+function isUserValid(user: Express.User, password: string) {
 	if (user.password === password) {
 		return true;
 	} else {
