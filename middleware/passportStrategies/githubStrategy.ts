@@ -3,7 +3,6 @@ import { Strategy as GitHubStrategy } from "passport-github2";
 import { PassportStrategy } from "../../interfaces/index";
 import { getUserById, addGitHubUser } from "../../controllers/userController";
 import { GithubProfile } from "../../interfaces/GithubProfile";
-import { User } from "../../interfaces/User";
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -32,7 +31,7 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
 		accessToken: string,
 		refreshToken: string,
 		profile: GithubProfile,
-		done: (err?: Error | null, user?: User) => void
+		done: (err?: Error | null, user?: Express.User) => void
 	): Promise<void> => {
 		const { id, displayName } = profile;
 		let user = getUserById(parseInt(id));
